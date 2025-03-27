@@ -82,5 +82,9 @@ def create_questionset_with_questions():
     # Return the API response
     return jsonify(response.json()), response.status_code
 
+@app.route('/static/<path:filename>', methods=['GET'])
+def serve_static(filename):
+    return send_from_directory(os.path.join(app.root_path, 'static'), filename)
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5001)
